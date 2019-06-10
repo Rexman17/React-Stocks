@@ -14,6 +14,7 @@ class StockContainer extends Component {
               key={index}
               stock={stock}
               addOrRemove={this.props.addOrRemove}
+              inStockCont={true}
               />
     })
 

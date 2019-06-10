@@ -25,14 +25,10 @@ componentDidMount() {
   })
 }
 
-// 2 diff functions
-  // buy = () => {
-  //
-  // }
-  //
-  // remove = () => {
-  //
-  // }
+
+addOrRemove = (stock, value) => {
+  console.log(stock, value);
+}
 
   render() {
     return (
@@ -43,14 +39,14 @@ componentDidMount() {
             <div className="col-8">
 
               <StockContainer
-                addOrRemove={this.buy}
+                addOrRemove={this.addOrRemove}
                 stocks={this.state.stocks}/>
 
             </div>
             <div className="col-4">
 
               <PortfolioContainer
-                addOrRemove={this.remove}
+                addOrRemove={this.addOrRemove}
                 portStocks={this.state.portfolio} />
 
             </div>

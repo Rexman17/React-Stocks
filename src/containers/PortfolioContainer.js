@@ -10,6 +10,7 @@ class PortfolioContainer extends Component {
               key={index}
               stock={pStock}
               addOrRemove={this.props.addOrRemove}
+              inStockCont={true}
               />
     })
 
