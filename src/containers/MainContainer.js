@@ -10,7 +10,8 @@ class MainContainer extends Component {
 // set initial state
   state = {
     stocks: [],
-    portfolio: []
+    portfolio: [],
+    filterTerm: ''
   }
 
 // get all the stocks when the page first mounts
@@ -52,19 +53,53 @@ componentDidMount() {
     })
   }
 
+  sortBy = (e) => {
+    if (e.target.value === "Alphabetically") {
+      let alphabetically = this.state.stocks.sort((stockA, stockB) => {
+        return stockA.ticker.toLowerCase().localeCompare(stockB.ticker.toLowerCase())
+      })
+
+      this.setState({
+        stocks: alphabetically
+      })
+    }
+
+    if (e.target.value === "Price") {
+      let ascendingPrice = this.state.stocks.sort((stockA, stockB) => {
+        return stockA.price - stockB.price
+      })
+
+      this.setState({
+        stocks: ascendingPrice
+      })
+    }
+
+  }
+
+  filterBy = (filterTerm) => {
+    // console.log('filtering');
+    this.setState({
+      filterTerm: filterTerm
+    }, () => console.log(this.state))
+  }
 
 
   render() {
+
+    const filtered = this.state.stocks.filter((stock) => {
+      return stock.type === this.state.filterTerm
+    })
+
     return (
       <div>
-        <SearchBar/>
+        <SearchBar sortBy={this.sortBy} filterBy={this.filterBy} />
 
           <div className="row">
             <div className="col-8">
 
               <StockContainer
                 addOrRemove={this.buyStock}
-                stocks={this.state.stocks}/>
+                stocks={this.state.filterTerm !== '' ? filtered : this.state.stocks}/>
 
             </div>
             <div className="col-4">

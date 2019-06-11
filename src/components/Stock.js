@@ -10,9 +10,12 @@ const Stock = (props) => {
           <h5 className="card-title">{
               props.stock.name
             }</h5>
-          <p className="card-text">{
+          <p className="card-text">${
               props.stock.price
             }</p>
+            <p className="card-text">Ticker: {
+                props.stock.ticker
+              }</p>
         </div>
       </div>
     </div>
