@@ -25,10 +25,34 @@ componentDidMount() {
   })
 }
 
+  // moving to portfolio and out of StockContainer
+  buyStock = (stock) => {
+    // console.log(stock);
+    let bought = this.state.stocks.filter((s) => {
+      return s.id !== stock.id
+    })
 
-addOrRemove = (stock, value) => {
-  console.log(stock, value);
-}
+    this.setState({
+      stocks: bought,
+      portfolio: [...this.state.portfolio, stock]
+    })
+
+  }
+
+  // moving back to StockContainer and out of portfolio
+  sellStock = (stock) => {
+    // console.log('selling stock');
+    let sold = this.state.portfolio.filter((s) => {
+      return s.id !== stock.id
+    })
+
+    this.setState({
+      stocks: [...this.state.stocks, stock],
+      portfolio: sold
+    })
+  }
+
+
 
   render() {
     return (
@@ -39,14 +63,14 @@ addOrRemove = (stock, value) => {
             <div className="col-8">
 
               <StockContainer
-                addOrRemove={this.addOrRemove}
+                addOrRemove={this.buyStock}
                 stocks={this.state.stocks}/>
 
             </div>
             <div className="col-4">
 
               <PortfolioContainer
-                addOrRemove={this.addOrRemove}
+                addOrRemove={this.sellStock}
                 portStocks={this.state.portfolio} />
 
             </div>

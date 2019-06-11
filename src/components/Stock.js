@@ -4,7 +4,7 @@ const Stock = (props) => {
 
   // console.log("stock props",props);
   return (
-    <div onClick={() => props.addOrRemove(props.stock, props.inStockCont)}>
+    <div onClick={() => props.addOrRemove(props.stock)}>
       <div className="card">
         <div className="card-body">
           <h5 className="card-title">{
